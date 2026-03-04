@@ -1,0 +1,323 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                 PREMIUM INSTITUTIONAL TRADING DASHBOARD                      ║
+║                    "Bloomberg Terminal meets Apple Design"                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                         TOP STATUS BAR (Full Width)                          │
+│  ┌────────────────┬────────────────┬────────────────┬────────────────────┐  │
+│  │ MARKET REGIME  │  SMART MONEY   │   VIX LEVEL    │  NET LIQUIDITY     │  │
+│  │                │     BIAS       │                │                    │  │
+│  │ [BULL_VOLATILE]│   BULLISH ↑   │     18.5      │    $2.45T         │  │
+│  │  ⚫ (pulsing)   │   ▓▓▓▓▓▓░░    │                │    +$120B ↑       │  │
+│  └────────────────┴────────────────┴────────────────┴────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────┬───────────────────────────────┐
+│                                              │                               │
+│        MAIN LIQUIDITY CHART AREA             │    CONVICTION MULTIPLIER      │
+│  ┌──────────────────────────────────────┐   │   ┌─────────────────────┐     │
+│  │  Net Liquidity vs Price              │   │   │      ╭───────╮       │     │
+│  │  ┌────────────────────────────────┐  │   │   │    ╱           ╲     │     │
+│  │  │                            ╱╲  │  │   │   │  ╱       ●       ╲   │     │
+│  │  │                       ╱╲  ╱  ╲ │  │   │   │ ╱      1.4×       ╲  │     │
+│  │  │                  ╱╲  ╱  ╲╱    ╲│  │   │   │╱                   ╲ │     │
+│  │  │             ╱╲  ╱  ╲╱          │  │   │   └─────────────────────┘     │
+│  │  │        ╱╲  ╱  ╲╱               │  │   │   0.5×              1.5×      │
+│  │  │   ╱╲  ╱  ╲╱                    │  │   │   ↑ Strengthening            │
+│  │  └────────────────────────────────┘  │   └───────────────────────────────┤
+│  │  [Last 90 Days]                      │                                   │
+│  └──────────────────────────────────────┘   │    FEAR & GREED INDEX         │
+│                                              │   ┌─────────────────────┐     │
+│                                              │   │    ╭─────────╮       │     │
+│                                              │   │   ╱●          ╲      │     │
+│                                              │   │  ╱      68     ╲     │     │
+│                                              │   │ ╱               ╲    │     │
+│                                              │   └─────────────────────┘     │
+│                                              │   Fear ────────────── Greed   │
+│                                              │       "Greed"                 │
+└──────────────────────────────────────────────┴───────────────────────────────┘
+
+┌──────────────────────────────────────────────┬───────────────────────────────┐
+│                                              │                               │
+│         COT POSITIONING                      │    SMART MONEY BIAS           │
+│  ┌──────────────────────────────────────┐   │   ┌─────────────────────┐     │
+│  │  Asset Managers    ████████░░  80%   │   │   │                      │     │
+│  │  Leveraged Funds   ░░░░▓▓▓▓▓▓ -60%   │   │   │  ▓▓▓▓▓▓▓│░░░░░░     │     │
+│  │  Commercials       ███░░░░░░   30%   │   │   │          ▲           │     │
+│  │                                      │   │   │  BEARISH │ BULLISH   │     │
+│  │  ← Short          0          Long →  │   │   │                      │     │
+│  └──────────────────────────────────────┘   │   │   BULLISH (75%)      │     │
+│                                              │   └─────────────────────┘     │
+└──────────────────────────────────────────────┴───────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          AI SIGNAL BREAKDOWN                                 │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │  RSI Divergence        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░  85%   +0.75  ↑         │   │
+│  │  Volume Delta          ░░░░░░░░▓▓▓▓▓▓░░░░░░░  45%   -0.32  ↓         │   │
+│  │  Order Flow Imbalance  ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░  72%   +0.68  ↑         │   │
+│  │  Dark Pool Activity    ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░  95%   +0.91  ↑         │   │
+│  │  Put/Call Ratio        ░░░░▓▓░░░░░░░░░░░░░░  28%   -0.15  ↓         │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          CONTRARIAN ALERTS                                   │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │  ⚠️  Contrarian Signal                                     [pulsing]  │   │
+│  │     Extreme Fear detected - potential reversal zone near support      │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          TRADING GUIDANCE                                    │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │  Market showing STRONG INSTITUTIONAL ACCUMULATION during volatility.  │   │
+│  │  Consider SCALING INTO POSITIONS on pullbacks near support zones.     │   │
+│  │                                                                        │   │
+│  │  Key Levels: 4,150 (support) | 4,320 (resistance)                    │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════════════
+                              COLOR KEY
+═══════════════════════════════════════════════════════════════════════════════
+
+  BULLISH:   ▓▓▓▓▓ (Cyber Mint Green - #00E096)
+  BEARISH:   ░░░░░ (Coral Red - #FF4D4D)
+  NEUTRAL:   ───── (Cool Grey - #A0AEC0)
+  ACCENT:    ●●●●● (Electric Purple - #7C3AED)
+  WARNING:   ⚠️⚠️⚠️ (Amber - #FFB347)
+
+═══════════════════════════════════════════════════════════════════════════════
+                           GLASSMORPHISM EFFECTS
+═══════════════════════════════════════════════════════════════════════════════
+
+All cards have:
+  - Semi-transparent dark background (rgba(21, 25, 33, 0.6))
+  - Blur effect (backdrop-filter: blur(12px))
+  - Subtle white border glow (1px solid rgba(255, 255, 255, 0.08))
+  - Rounded corners (16px border-radius)
+  - Top highlight line (gradient)
+
+Hover states add:
+  - Increased opacity (0.8)
+  - Purple glow shadow
+  - Subtle lift (translateY(-2px))
+
+═══════════════════════════════════════════════════════════════════════════════
+                            ANIMATION STATES
+═══════════════════════════════════════════════════════════════════════════════
+
+1. MARKET REGIME PILL
+   - Pulsing dot animation (⚫ → ◯ → ⚫)
+   - Color changes based on regime (green/red/grey)
+   - Sparkline updates in real-time
+
+2. CONVICTION GAUGE
+   - Needle rotates smoothly (1s ease-out)
+   - Arc fill animates on change
+   - Glow effect on needle tip
+
+3. FEAR & GREED GAUGE
+   - Needle rotation (1s cubic-bezier)
+   - No unnecessary animations (clean, professional)
+
+4. SIGNAL BARS
+   - Width animates on strength change (0.5s ease)
+   - Opacity indicates confidence
+   - Background flashes on update (green/red)
+
+5. ALERTS
+   - Border pulses when active (2s infinite)
+   - Amber glow expands and contracts
+   - Dismissible with fade-out
+
+6. DATA VALUES
+   - Flash green background when increasing
+   - Flash red background when decreasing
+   - Number counts up smoothly (800ms)
+
+═══════════════════════════════════════════════════════════════════════════════
+                          RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════════════════════════
+
+MOBILE (< 768px)
+┌──────────────┐
+│ STATUS BAR   │
+├──────────────┤
+│ CONVICTION   │
+├──────────────┤
+│ FEAR & GREED │
+├──────────────┤
+│ CHART        │
+├──────────────┤
+│ SIGNALS      │
+└──────────────┘
+
+TABLET (768px - 1024px)
+┌──────────────┬──────────────┐
+│ STATUS BAR (FULL WIDTH)     │
+├──────────────┼──────────────┤
+│ CHART        │ CONVICTION   │
+│              ├──────────────┤
+│              │ FEAR & GREED │
+├──────────────┴──────────────┤
+│ COT          │ SIGNALS      │
+└──────────────┴──────────────┘
+
+DESKTOP (> 1024px)
+[See main layout above - 12-column grid]
+
+═══════════════════════════════════════════════════════════════════════════════
+                         COMPONENT HIERARCHY
+═══════════════════════════════════════════════════════════════════════════════
+
+TradingDashboard
+├── TopStatusBar
+│   ├── MarketRegimePill (with sparkline)
+│   ├── SmartMoneyBiasPreview
+│   ├── VixLevel (animated value)
+│   └── NetLiquidity (animated value)
+├── MainChartArea
+│   └── LiquidityChart (Recharts/LWC)
+├── RightSidebar
+│   ├── ConvictionGauge
+│   └── FearGreedGauge
+├── BottomRow
+│   ├── COTChart
+│   ├── BiasMeterpanel
+│   └── SignalList
+├── Alerts
+│   └── AlertCard[] (mapped)
+└── GuidanceCard
+
+═══════════════════════════════════════════════════════════════════════════════
+                            INTERACTION STATES
+═══════════════════════════════════════════════════════════════════════════════
+
+HOVER STATES:
+- Cards: Lift + glow + increased opacity
+- Buttons: Color shift + scale(1.02)
+- Signals: Highlight row background
+
+ACTIVE STATES:
+- Alerts: Pulsing border
+- Live data: Pulsing dot indicator
+- Selected items: Purple accent border
+
+FOCUS STATES (Keyboard):
+- 2px purple outline
+- Offset by 2px for clarity
+- Visible on all interactive elements
+
+LOADING STATES:
+- Skeleton shimmer (diagonal gradient sweep)
+- Pulse animation on placeholders
+- Smooth transition to real content
+
+ERROR STATES:
+- Red border glow
+- Warning icon (⚠️)
+- Helpful error message
+- Retry button option
+
+═══════════════════════════════════════════════════════════════════════════════
+                          TYPOGRAPHY EXAMPLES
+═══════════════════════════════════════════════════════════════════════════════
+
+METRIC (Hero Numbers):
+1.4× | 18.5 | $2.45T | 68
+Font: JetBrains Mono | 32px | Bold | Tabular nums
+
+H1 (Card Titles):
+CONVICTION MULTIPLIER | NET LIQUIDITY VS PRICE
+Font: Inter | 16px | Semi-Bold | Uppercase | 0.05em tracking
+
+H2 (Labels):
+Market Regime | Smart Money Bias | Last 90 Days
+Font: Inter | 12px | Medium | Secondary color
+
+BODY (Descriptions):
+Market showing strong institutional accumulation during volatility.
+Font: Inter | 14px | Regular | 1.5 line-height
+
+TABLE/DATA:
++0.75 | -0.32 | 85% | 4,150
+Font: JetBrains Mono | 13px | Regular | Tabular nums
+
+═══════════════════════════════════════════════════════════════════════════════
+                         ACCESSIBILITY FEATURES
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ Semantic HTML (header, main, section, article)
+✓ ARIA labels on all interactive elements
+✓ Focus indicators (2px purple outline)
+✓ Keyboard navigation (Tab, Enter, Space, Arrow keys)
+✓ Screen reader announcements for data updates
+✓ 4.5:1 contrast ratio minimum
+✓ Color + icon + text (not color alone)
+✓ Skip to main content link
+✓ Proper heading hierarchy (h1 → h2 → h3)
+
+═══════════════════════════════════════════════════════════════════════════════
+                       PRODUCTION OPTIMIZATIONS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. CODE SPLITTING
+   - Lazy load charts (dynamic import)
+   - Route-based splitting
+   - Component-based splitting for heavy items
+
+2. FONT LOADING
+   - Preload critical fonts
+   - Font-display: swap
+   - WOFF2 format only
+   - Subset to used characters
+
+3. CSS OPTIMIZATION
+   - Purge unused styles
+   - Minify and gzip
+   - Critical CSS inline
+   - Non-critical CSS deferred
+
+4. JAVASCRIPT
+   - Tree-shaking
+   - Minification
+   - Compression (gzip/brotli)
+   - Service worker caching
+
+5. IMAGES
+   - WebP format with fallback
+   - Lazy loading
+   - Responsive images
+   - Placeholder blur
+
+6. WEBSOCKET
+   - Reconnection logic
+   - Heartbeat/ping-pong
+   - Message batching
+   - Debounce rapid updates
+
+═══════════════════════════════════════════════════════════════════════════════
+                            FILE SIZE TARGETS
+═══════════════════════════════════════════════════════════════════════════════
+
+CSS:             ~15KB  (minified + gzipped)
+JavaScript:      ~80KB  (minified + gzipped, excluding charts)
+Fonts:           ~40KB  (WOFF2, Inter + JetBrains Mono)
+Chart Library:   ~25KB  (Lightweight Charts, minified)
+───────────────────────────────────────────
+TOTAL (Initial):  160KB
+
+FIRST PAINT:      < 1.2s
+TIME TO INTERACTIVE: < 2.5s
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Built with: React + TypeScript + CSS Custom Properties
+Optimized for: Performance + Accessibility + Visual Appeal
+Status: Production Ready ✓
+
+═══════════════════════════════════════════════════════════════════════════════

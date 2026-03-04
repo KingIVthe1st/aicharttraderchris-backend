@@ -1,0 +1,821 @@
+/**
+ * Premium Institutional Trading Dashboard Styles
+ * Version 1.0 | December 2025
+ *
+ * Usage: Import this file as global CSS or CSS Module
+ * Optimized for dark mode, data visualization, and institutional aesthetics
+ */
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ========================================================================= */
+
+:root {
+  /* ===== Color System ===== */
+
+  /* Backgrounds */
+  --deep-space: #0b0e14;
+  --glass-surface: rgba(21, 25, 33, 0.6);
+  --glass-surface-hover: rgba(21, 25, 33, 0.8);
+  --surface-highlight: #1e232f;
+
+  /* Typography */
+  --text-primary: rgba(243, 244, 246, 0.95);
+  --text-secondary: rgba(156, 163, 175, 0.6);
+  --text-tertiary: #6b7280;
+  --text-disabled: rgba(107, 114, 128, 0.4);
+
+  /* Borders */
+  --border-subtle: #2a303c;
+  --border-glow: rgba(255, 255, 255, 0.08);
+  --border-glow-hover: rgba(255, 255, 255, 0.15);
+
+  /* Trading Semantic Colors */
+  --bullish: #00e096;
+  --bullish-dark: #00a870;
+  --bullish-muted: rgba(0, 224, 150, 0.15);
+  --bearish: #ff4d4d;
+  --bearish-dark: #c0392b;
+  --bearish-muted: rgba(255, 77, 77, 0.15);
+  --neutral: #a0aec0;
+
+  /* Status Colors */
+  --warning: #ffb347;
+  --warning-muted: rgba(255, 179, 71, 0.15);
+  --danger: #ef4444;
+  --success: #10b981;
+  --info: #3b82f6;
+
+  /* Premium Accents */
+  --accent-purple: #7c3aed;
+  --accent-purple-dark: #5b21b6;
+  --accent-gold: #ffd700;
+  --accent-gold-dark: #ffcc33;
+
+  /* ===== Gradients ===== */
+  --gradient-bullish: linear-gradient(135deg, #00e096 0%, #00a870 100%);
+  --gradient-bearish: linear-gradient(135deg, #ff4d4d 0%, #c0392b 100%);
+  --gradient-gold: linear-gradient(to right, #ffb347, #ffcc33);
+  --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+  --gradient-glass: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
+
+  /* ===== Typography ===== */
+  --font-ui:
+    "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  --font-mono: "JetBrains Mono", "Roboto Mono", "SF Mono", Consolas, monospace;
+
+  /* ===== Spacing (4px grid) ===== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* ===== Border Radius ===== */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ===== Shadows ===== */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+  /* ===== Transitions ===== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   BASE STYLES
+   ========================================================================= */
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--deep-space);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================================================================
+   TYPOGRAPHY UTILITIES
+   ========================================================================= */
+
+.text-metric {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-h1 {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+}
+
+.text-h2 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.text-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-ui);
+}
+
+.text-table {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+/* Gradient Text Effects */
+.text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.text-gradient-purple {
+  background: var(--gradient-purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.text-gradient-bullish {
+  background: var(--gradient-bullish);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.text-glow {
+  text-shadow:
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+/* ============================================================================
+   GLASSMORPHISM COMPONENTS
+   ========================================================================= */
+
+.glass-card {
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    var(--shadow-glass),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top highlight line */
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+}
+
+.glass-card:hover {
+  background: var(--glass-surface-hover);
+  border-color: var(--border-glow-hover);
+  box-shadow:
+    0 0 40px rgba(124, 58, 237, 0.15),
+    0 8px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Card Variants */
+.glass-card--bullish {
+  border-color: rgba(0, 224, 150, 0.2);
+}
+
+.glass-card--bullish:hover {
+  box-shadow: 0 0 40px rgba(0, 224, 150, 0.2);
+}
+
+.glass-card--bearish {
+  border-color: rgba(255, 77, 77, 0.2);
+}
+
+.glass-card--bearish:hover {
+  box-shadow: 0 0 40px rgba(255, 77, 77, 0.2);
+}
+
+.glass-card--accent {
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+/* Compact card for dense layouts */
+.glass-card--compact {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+/* ============================================================================
+   GLOW EFFECTS
+   ========================================================================= */
+
+.glow-bullish {
+  box-shadow:
+    0 0 20px rgba(0, 224, 150, 0.3),
+    0 0 40px rgba(0, 224, 150, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glow-bearish {
+  box-shadow:
+    0 0 20px rgba(255, 77, 77, 0.3),
+    0 0 40px rgba(255, 77, 77, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glow-accent {
+  box-shadow:
+    0 0 20px rgba(124, 58, 237, 0.4),
+    0 0 40px rgba(124, 58, 237, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glow-warning {
+  box-shadow:
+    0 0 20px rgba(255, 179, 71, 0.4),
+    0 0 40px rgba(255, 179, 71, 0.2);
+}
+
+/* ============================================================================
+   LAYOUT COMPONENTS
+   ========================================================================= */
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--deep-space);
+  min-height: 100vh;
+}
+
+@media (max-width: 1023px) {
+  .dashboard-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Grid span utilities */
+.span-full {
+  grid-column: span 12;
+}
+.span-8 {
+  grid-column: span 8;
+}
+.span-6 {
+  grid-column: span 6;
+}
+.span-4 {
+  grid-column: span 4;
+}
+.span-3 {
+  grid-column: span 3;
+}
+
+@media (max-width: 1023px) {
+  .span-8,
+  .span-6,
+  .span-4,
+  .span-3 {
+    grid-column: span 4;
+  }
+}
+
+@media (max-width: 767px) {
+  .span-8,
+  .span-6,
+  .span-4,
+  .span-3 {
+    grid-column: span 1;
+  }
+}
+
+/* ============================================================================
+   STATUS COMPONENTS
+   ========================================================================= */
+
+/* Market Regime Pill */
+.regime-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  background: var(--bullish-muted);
+  border: 1px solid var(--bullish);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all var(--transition-base);
+}
+
+.regime-pill--bearish {
+  background: var(--bearish-muted);
+  border-color: var(--bearish);
+}
+
+.regime-pill--neutral {
+  background: rgba(160, 174, 192, 0.15);
+  border-color: var(--neutral);
+}
+
+/* Pulse Indicator */
+.regime-pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--bullish);
+  border-radius: 50%;
+  animation: pulse-glow 2s infinite;
+}
+
+.regime-pulse--bearish {
+  background: var(--bearish);
+  animation: pulse-glow-bearish 2s infinite;
+}
+
+/* ============================================================================
+   GAUGE COMPONENTS
+   ========================================================================= */
+
+.gauge-container {
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.gauge-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.gauge-label {
+  text-align: center;
+  margin-top: var(--space-2);
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================================================
+   SIGNAL COMPONENTS
+   ========================================================================= */
+
+.signal-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.signal-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: var(--space-3);
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background: rgba(30, 35, 47, 0.4);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.signal-row:hover {
+  background: rgba(30, 35, 47, 0.6);
+}
+
+.signal-name {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.signal-strength-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.signal-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-slow);
+}
+
+.signal-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ============================================================================
+   ALERT COMPONENTS
+   ========================================================================= */
+
+.alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.alert-warning {
+  border-color: var(--warning);
+  background: var(--warning-muted);
+}
+
+.alert-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.alert-content h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 var(--space-1) 0;
+}
+
+.alert-content p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Pulsing border for active alerts */
+.alert-active {
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+  0%,
+  100% {
+    border-color: var(--warning);
+    box-shadow: 0 0 0 0 rgba(255, 179, 71, 0.4);
+  }
+  50% {
+    border-color: rgba(255, 179, 71, 0.5);
+    box-shadow: 0 0 0 8px rgba(255, 179, 71, 0);
+  }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ========================================================================= */
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 224, 150, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 224, 150, 0);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-glow-bearish {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(255, 77, 77, 0);
+    transform: scale(1.1);
+  }
+}
+
+/* Data flash animations */
+@keyframes data-flash-bullish {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(0, 224, 150, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes data-flash-bearish {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(255, 77, 77, 0.2);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.value-increased {
+  animation: data-flash-bullish 1s ease-out;
+}
+
+.value-decreased {
+  animation: data-flash-bearish 1s ease-out;
+}
+
+/* Shimmer loading state */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(42, 48, 60, 0.4) 0%,
+    rgba(42, 48, 60, 0.6) 50%,
+    rgba(42, 48, 60, 0.4) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+  min-height: 20px;
+}
+
+/* Chart line draw animation */
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chart-line-animated {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 1.5s ease-out forwards;
+}
+
+/* Rotating border gradient */
+@keyframes rotate-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================================
+   UTILITY CLASSES
+   ========================================================================= */
+
+.bullish-text {
+  color: var(--bullish);
+}
+.bearish-text {
+  color: var(--bearish);
+}
+.neutral-text {
+  color: var(--neutral);
+}
+.warning-text {
+  color: var(--warning);
+}
+.accent-text {
+  color: var(--accent-purple);
+}
+
+.bullish-bg {
+  background-color: var(--bullish);
+}
+.bearish-bg {
+  background-color: var(--bearish);
+}
+.warning-bg {
+  background-color: var(--warning);
+}
+
+.bullish-border {
+  border-color: var(--bullish);
+}
+.bearish-border {
+  border-color: var(--bearish);
+}
+
+/* Spacing utilities */
+.p-1 {
+  padding: var(--space-1);
+}
+.p-2 {
+  padding: var(--space-2);
+}
+.p-3 {
+  padding: var(--space-3);
+}
+.p-4 {
+  padding: var(--space-4);
+}
+.p-6 {
+  padding: var(--space-6);
+}
+
+.m-1 {
+  margin: var(--space-1);
+}
+.m-2 {
+  margin: var(--space-2);
+}
+.m-3 {
+  margin: var(--space-3);
+}
+.m-4 {
+  margin: var(--space-4);
+}
+.m-6 {
+  margin: var(--space-6);
+}
+
+.gap-2 {
+  gap: var(--space-2);
+}
+.gap-3 {
+  gap: var(--space-3);
+}
+.gap-4 {
+  gap: var(--space-4);
+}
+
+/* Flexbox utilities */
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+
+/* Border radius */
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+.rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Transitions */
+.transition-all {
+  transition: all var(--transition-base);
+}
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+
+/* ============================================================================
+   PREMIUM HIGHLIGHTS
+   ========================================================================= */
+
+.highlight-bullish {
+  color: var(--bullish);
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--bullish-muted);
+  border-radius: 4px;
+}
+
+.highlight-bearish {
+  color: var(--bearish);
+  font-weight: 600;
+  padding: 2px 6px;
+  background: var(--bearish-muted);
+  border-radius: 4px;
+}
+
+.highlight-accent {
+  color: var(--accent-purple);
+  font-weight: 600;
+  padding: 2px 6px;
+  background: rgba(124, 58, 237, 0.15);
+  border-radius: 4px;
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ========================================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-space);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--surface-highlight);
+}

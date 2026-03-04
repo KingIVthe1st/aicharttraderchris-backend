@@ -1,0 +1,56 @@
+name = "tradvio-backend"
+main = "src/index.ts"
+compatibility_date = "2024-10-14"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "tradvio-db"
+database_id = "01fb8bdf-cd29-488c-a9f4-41aa6aa14fdf"
+
+# R2 Storage binding
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "tradvio-files"
+
+# KV for sessions and rate limiting
+[[kv_namespaces]]
+binding = "SESSIONS"
+id = "c62f217724f54c8d9c04beb1e5853ebb"
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "7af490d6b1064f2890186ef3b72848ba"
+
+[[kv_namespaces]]
+binding = "FINRA_DATA"
+id = "65c57a8d46d343c9a5548f6e6145ed47"
+
+[[kv_namespaces]]
+binding = "INSTITUTIONAL_DATA"
+id = "83cd58b957914cb19d96783e346f7645"
+
+# Scheduled triggers for auto-updating data
+# Multiple crons for different data sources:
+# - Daily at 6am UTC: FRED (liquidity), CBOE (VIX/P-C), Fear & Greed
+# - Weekly Monday 6am UTC: FINRA dark pool, CFTC COT
+[triggers]
+crons = ["0 6 * * *", "0 18 * * 5"]  # Daily 6am UTC + Friday 6pm UTC (after COT release)
+
+# Analytics Engine for monitoring
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+
+# Environment variables (add these in Cloudflare dashboard or via wrangler secret)
+[vars]
+ENVIRONMENT = "production"
+# Allow custom domain, Cloudflare Pages deployments, and localhost
+CORS_ORIGINS = "https://aicharttraders.com,https://www.aicharttraders.com,https://tradvio-frontend.pages.dev,https://*.tradvio-frontend.pages.dev,http://localhost:5173"
+
+# Secrets (set via: wrangler secret put <NAME>)
+# OPENAI_API_KEY
+# STRIPE_SECRET_KEY
+# STRIPE_WEBHOOK_SECRET
+# STRIPE_PRICE_ID
+# JWT_SECRET

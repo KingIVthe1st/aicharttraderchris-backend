@@ -1,0 +1,32 @@
+{
+  "name": "tradvio-backend",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker API for Tradvio trading platform",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create tradvio-db",
+    "db:migrate": "wrangler d1 migrations apply tradvio-db",
+    "db:local": "wrangler d1 migrations apply tradvio-db --local",
+    "r2:create": "wrangler r2 bucket create tradvio-files"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "trading",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "wrangler": "^3.86.1"
+  },
+  "dependencies": {
+    "@sentry/cloudflare": "^10.21.0",
+    "hono": "^4.6.14",
+    "openai": "^4.72.0",
+    "stripe": "^17.5.0"
+  }
+}

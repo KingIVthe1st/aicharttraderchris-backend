@@ -3,6 +3,10 @@ import { cors } from "hono/cors";
 import { jwt, sign, verify } from "hono/jwt";
 import OpenAI from "openai";
 import Stripe from "stripe";
+import { computeSoulBlueprint, saveSoulBlueprint, getSoulBlueprint, updateSoulBlueprint } from './soulBlueprint';
+import type { SoulBlueprintInput } from './soulBlueprint';
+import { getCosmicIntelligence, generateCosmicOverlayContext } from './cosmicEngine';
+import { refreshEnvironmentalData } from './environmentalEnergy';
 
 // Environment type definition
 type Env = {
@@ -3218,6 +3222,7 @@ app.post("/api/analyze", authMiddleware, async (c) => {
       conversationHistory,
       reasoningEffort,
       mode,
+      includeCosmic,
     } = await c.req.json();
 
     if (!instrument || !contract || !atm) {
@@ -3312,6 +3317,21 @@ app.post("/api/analyze", authMiddleware, async (c) => {
       );
     }
 
+    // Cosmic overlay context (when enabled)
+    let cosmicContext = "";
+    if (includeCosmic) {
+      try {
+        const blueprint = await getSoulBlueprint(c.env.DB, user.id);
+        if (blueprint) {
+          const cosmic = await getCosmicIntelligence(blueprint, "America/New_York", c.env.SESSIONS);
+          cosmicContext = generateCosmicOverlayContext(cosmic);
+        }
+      } catch (error: any) {
+        console.error("[Cosmic Overlay] Error:", error.message);
+        // Non-fatal — continue without cosmic context
+      }
+    }
+
     // Build OpenAI messages array with conversation history
     // NOTE: Message order optimized for OpenAI's automatic prompt caching:
     // 1. System prompt (consistent across requests - cached)
@@ -3330,7 +3350,7 @@ app.post("/api/analyze", authMiddleware, async (c) => {
       finraContext, // Include FINRA dark pool intelligence
       institutionalContext, // Include institutional data (COT, liquidity, sentiment)
     );
-    openaiMessages.push({ role: "system", content: systemPrompt });
+    openaiMessages.push({ role: "system", content: systemPrompt + (cosmicContext ? "\n\n" + cosmicContext : "") });
 
     // Add conversation history if provided
     if (conversationHistory && conversationHistory.length > 0) {
@@ -5504,6 +5524,112 @@ app.get("/api/institutional/health", async (c) => {
 });
 
 // =====================================================
+// SOUL BLUEPRINT & COSMIC INTELLIGENCE ROUTES
+// =====================================================
+
+// Create or update soul blueprint
+app.post("/api/soul-blueprint", authMiddleware, async (c) => {
+  try {
+    const user = c.get("user");
+    const input: SoulBlueprintInput = await c.req.json();
+
+    // Validate required fields
+    if (!input.fullName || !input.birthDate || !input.birthTime || !input.birthCity || !input.birthCountry) {
+      return c.json({ error: "All fields required: fullName, birthDate, birthTime, birthCity, birthCountry" }, 400);
+    }
+
+    // Check if blueprint already exists
+    const existing = await getSoulBlueprint(c.env.DB, user.id);
+
+    // Compute the blueprint
+    const computed = await computeSoulBlueprint(input);
+
+    let blueprint;
+    if (existing) {
+      blueprint = await updateSoulBlueprint(c.env.DB, user.id, input, computed);
+    } else {
+      blueprint = await saveSoulBlueprint(c.env.DB, user.id, input, computed);
+    }
+
+    return c.json({ blueprint });
+  } catch (error: any) {
+    console.error("[Soul Blueprint] Error:", error.message);
+    return c.json({ error: error.message || "Failed to create soul blueprint" }, 500);
+  }
+});
+
+// Get soul blueprint
+app.get("/api/soul-blueprint", authMiddleware, async (c) => {
+  try {
+    const user = c.get("user");
+    const blueprint = await getSoulBlueprint(c.env.DB, user.id);
+
+    if (!blueprint) {
+      return c.json({ error: "No soul blueprint found", hasBlueprint: false }, 404);
+    }
+
+    return c.json({ blueprint, hasBlueprint: true });
+  } catch (error: any) {
+    return c.json({ error: error.message }, 500);
+  }
+});
+
+// Daily cosmic intelligence
+app.get("/api/cosmic/daily", authMiddleware, async (c) => {
+  try {
+    const user = c.get("user");
+    const timezone = c.req.query("timezone") || "America/New_York";
+
+    const blueprint = await getSoulBlueprint(c.env.DB, user.id);
+    if (!blueprint) {
+      return c.json({ error: "Soul blueprint required. Complete onboarding first." }, 400);
+    }
+
+    const cosmic = await getCosmicIntelligence(blueprint, timezone, c.env.SESSIONS);
+    return c.json(cosmic);
+  } catch (error: any) {
+    console.error("[Cosmic Daily] Error:", error.message);
+    return c.json({ error: error.message }, 500);
+  }
+});
+
+// NEO score only
+app.get("/api/cosmic/neo-score", authMiddleware, async (c) => {
+  try {
+    const user = c.get("user");
+    const timezone = c.req.query("timezone") || "America/New_York";
+
+    const blueprint = await getSoulBlueprint(c.env.DB, user.id);
+    if (!blueprint) {
+      return c.json({ error: "Soul blueprint required" }, 400);
+    }
+
+    const cosmic = await getCosmicIntelligence(blueprint, timezone, c.env.SESSIONS);
+    return c.json({ neoScore: cosmic.neoScore });
+  } catch (error: any) {
+    return c.json({ error: error.message }, 500);
+  }
+});
+
+// Hora grid only
+app.get("/api/cosmic/hora-grid", authMiddleware, async (c) => {
+  try {
+    const user = c.get("user");
+    const timezone = c.req.query("timezone") || "America/New_York";
+
+    const blueprint = await getSoulBlueprint(c.env.DB, user.id);
+    if (!blueprint) {
+      return c.json({ error: "Soul blueprint required" }, 400);
+    }
+
+    const cosmic = await getCosmicIntelligence(blueprint, timezone, c.env.SESSIONS);
+    return c.json({ horaGrid: cosmic.horaGrid });
+  } catch (error: any) {
+    return c.json({ error: error.message }, 500);
+  }
+});
+
+// =====================================================
 // AI CHAT: Conversational AI for the Intelligence Dashboard
 // =====================================================
 // This endpoint powers the "Learn More with AI" feature throughout the dashboard.
@@ -5704,6 +5830,17 @@ async function handleScheduled(
     trackAnalytics(env, "finra_update_error", {
       error: error.message,
     });
+  }
+
+  // Refresh environmental energy data (space weather)
+  try {
+    console.log("[Scheduled] Refreshing environmental energy data...");
+    await refreshEnvironmentalData(env.SESSIONS);
+    updates.push("environmental");
+    console.log("[Scheduled] Environmental energy data updated");
+  } catch (error: any) {
+    console.error("[Scheduled] Environmental energy update error:", error.message);
+    errors.push(`environmental: ${error.message}`);
   }
 
   console.log("[Scheduled] Update complete:", {
